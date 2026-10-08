@@ -1,4 +1,4 @@
-﻿const API_BASE_URL = "http://localhost:8080/api";
+﻿const API_BASE_URL = "https://smartbudget-backend-0r2f.onrender.com/api";
 
 async function handleResponse(response) {
   if (response.status === 204) {
