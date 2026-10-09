@@ -40,6 +40,10 @@ function Navbar() {
           <span className="hamburger-bar"></span>
         </button>
 
+        {menuOpen && (
+          <div className="mobile-nav-backdrop" onClick={closeMenu} aria-hidden="true" />
+        )}
+
         <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
           <NavLink
             to="/dashboard"

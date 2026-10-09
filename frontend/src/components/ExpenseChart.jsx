@@ -68,15 +68,17 @@ function ExpenseChart({ expenses = [] }) {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 
-  let cumulativeAngle = 0;
-  const slices = expenses.map((item, index) => {
+  let runningAngle = 0;
+  const slices = [];
+  for (let index = 0; index < expenses.length; index++) {
+    const item = expenses[index];
     const amount = Number(item.amount) || 0;
     const percentage = total > 0 ? (amount / total) * 100 : 0;
     const strokeDash = (percentage / 100) * circumference;
-    const strokeOffset = circumference - cumulativeAngle;
-    cumulativeAngle += strokeDash;
+    const strokeOffset = circumference - runningAngle;
+    runningAngle += strokeDash;
 
-    return {
+    slices.push({
       category: item.category,
       amount,
       percentage,
@@ -85,8 +87,8 @@ function ExpenseChart({ expenses = [] }) {
       strokeDash,
       strokeOffset,
       index,
-    };
-  });
+    });
+  }
 
   const activeSlice = hoveredIndex !== null ? slices[hoveredIndex] : null;
 

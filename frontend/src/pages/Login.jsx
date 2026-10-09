@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authService } from "../api/api";
 
@@ -30,7 +30,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const data = await authService.login(email.trim(), password);
+      await authService.login(email.trim(), password);
       setSuccessMsg("Login successful! Redirecting to dashboard...");
       setTimeout(() => {
         navigate("/dashboard");
